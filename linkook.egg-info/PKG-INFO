@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: linkook
+Version: 1.1.0
+Summary: A tool for scanning and enumerating linked social accounts.
+Home-page: https://github.com/JackJuly/linkook
+Author: Jack Ju1y
+Author-email:  ju1y0x0@proton.me
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2
+Requires-Dist: colorama>=0.4.6

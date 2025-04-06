@@ -1,0 +1,2 @@
+[console_scripts]
+linkook = linkook.linkook:main

@@ -1,0 +1,94 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/provider.schema.json",
+    "title": "Provider Configuration",
+    "description": "JSON Schema for linkook's provider configuration file with match/notMatch keywords",
+    "type": "object",
+    "patternProperties": {
+        "^[A-Za-z0-9_-]+$": {
+            "type": "object",
+            "properties": {
+                "mainUrl": {
+                    "type": "string",
+                    "description": "Main home URL (e.g., 'https://github.com/')"
+                },
+                "profileUrl": {
+                    "type": "string",
+                    "description": "Profile URL template with '^USER^' for the user."
+                },
+                "queryUrl": {
+                    "type": "string",
+                    "description": "URL for API queries (if applicable)."
+                },
+                "regexUrl": {
+                    "type": "string",
+                    "description": "Regular expression for the profile URL."
+                },
+                "isConnected": {
+                    "type": "boolean",
+                    "description": "Indicates if this provider's profile page may list links to other social media."
+                },
+                "isUserID": {
+                    "type": "boolean",
+                    "description": "Indicates if the username is a user ID."
+                },
+                "hasEmail": {
+                    "type": "boolean",
+                    "description": "Indicates if the profile page has an email address."
+                },
+                "keyword": {
+                    "type": "object",
+                    "description": "Match and notMatch keyword lists for existence checks.",
+                    "properties": {
+                        "Match": {
+                            "type": "array",
+                            "description": "A list of strings. If at least one is found, we consider the user 'found'.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "notMatch": {
+                            "type": "array",
+                            "description": "A list of strings. If any are found, we consider the user 'not found'.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "handle_regex": {
+                    "type": "object",
+                    "description": "Regular expression for the username."
+                },
+                "request_method": {
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "POST",
+                        "HEAD",
+                        "PUT"
+                    ]
+                },
+                "request_payload": {
+                    "type": "object"
+                },
+                "headers": {
+                    "type": "object"
+                },
+                "options": {
+                    "type": "array",
+                    "description": "Optional array of extra parameters or info for advanced scanning.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "profileUrl"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

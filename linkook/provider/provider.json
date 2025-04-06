@@ -1,0 +1,507 @@
+{
+    "About Me": {
+        "mainUrl": "https://about.me",
+        "profileUrl": "https://about.me/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, we couldn't find that page"]
+        }
+    },
+    "allmylinks": {
+        "mainUrl": "https://allmylinks.com",
+        "profileUrl": "https://allmylinks.com/^USER^",
+        "keyword": {
+            "notMatch": ["This page is missing"]
+        },
+        "isConnected": true
+    },
+    "Buy Me a Coffee": {
+        "mainUrl": "https://buymeacoffee.com",
+        "profileUrl": "https://buymeacoffee.com/^USER^",
+        "keyword": {
+            "Match": ["user_id"]
+        },
+        "hasEmail": false,
+        "isConnected": true
+    },
+    "LinkedIn": {
+        "mainUrl": "https://www.linkedin.com",
+        "profileUrl": "https://www.linkedin.com/in/^USER^",
+        "regexUrl": "https://(?:www.|in.)?linkedin.com/in/^USER^",
+        "keyword": {
+            "notMatch": ["This page doesn’t exist"]
+        },
+        "isUserId": true
+    },
+    "Linktree": {
+        "mainUrl": "https://linktr.ee",
+        "profileUrl": "https://linktr.ee/^USER^",
+        "keyword": {
+            "notMatch": ["This page is missing"]
+        },
+        "isConnected": true
+    },
+    "GitHub": {
+        "mainUrl": "https://github.com",
+        "profileUrl": "https://github.com/^USER^",
+        "keyword": {
+            "Match": ["followers", "following"]
+        },
+        "isConnected": true
+    },
+    "GitLab": {
+        "mainUrl": "https://gitlab.com",
+        "profileUrl": "https://gitlab.com/^USER^",
+        "keyword": {
+            "Match": ["Personal projects"]
+        }
+    },
+    "Mastodon": {
+        "mainUrl": "https://mastodon.social",
+        "profileUrl": "https://mastodon.social/@^USER^",
+        "keyword": {
+            "notMatch": ["The user could not be found"]
+        }
+    },
+    "Medium": {
+        "mainUrl": "https://medium.com",
+        "profileUrl": "https://medium.com/@^USER^",
+        "keyword": {
+            "notMatch": ["Out of nothing, something."]
+        }
+    },
+    "TikTok": {
+        "mainUrl": "https://tiktok.com",
+        "profileUrl": "https://tiktok.com/@^USER^",
+        "keyword": {
+            "notMatch": ["Couldn't find this account"],
+            "Match": ["Followers", "Following"]
+        }
+    },
+    "Instagram": {
+        "mainUrl": "https://instagram.com",
+        "profileUrl": "https://instagram.com/^USER^",
+        "regexUrl": "https://(?:www.|mobile.)?instagram.com/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, this page isn't available.", "The link you followed may be broken, or the page may have been removed."],
+            "Match": ["Followers", "Following"]
+        }
+    },
+    "Threads": {
+        "mainUrl": "https://www.threads.net/",
+        "profileUrl": "https://www.threads.net/@^USER^",
+        "keyword": {
+            "Match": ["followers", "Mention"]
+        }
+    },
+    "Facebook": {
+        "mainUrl": "https://www.facebook.com",
+        "profileUrl": "https://www.facebook.com/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, this content isn't available right now"],  
+            "Match": ["mutual friends", "posts"]
+        }
+
+    },
+    "Reddit": {
+        "mainUrl": "https://reddit.com",
+        "profileUrl": "https://reddit.com/user/^USER^",
+        "regexUrl": "https://(?:www.|old.)?reddit.com/user/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, nobody on Reddit goes by that name."]
+        },
+        "hasEmail": false,
+        "isConnected": true
+    },
+    "X(Twitter)": {
+        "mainUrl": "https://x.com",
+        "profileUrl": "https://x.com/^USER^",
+        "regexUrl": "https://(?:www.|mobile.)?(?:twitter|x).com/^USER^",
+        "queryUrl": "https://nitter.privacydev.net/^USER^",
+        "keyword": {
+            "Match": ["followers", "following"]
+        }
+    },
+    "Snapchat": {
+        "mainUrl": "https://snapchat.com",
+        "profileUrl": "https://snapchat.com/add/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry! This user doesn't exist."]
+        }
+    },
+    "Twitch": {
+        "mainUrl": "https://twitch.tv",
+        "profileUrl": "https://twitch.tv/^USER^",
+        "keyword": {
+            "notMatch": ["<meta property='og:description' content='Twitch is the world&#39;s leading video platform and community for gamers.'>"]
+        }
+    },
+    "Fosstodon": {
+        "mainUrl": "https://fosstodon.org",
+        "profileUrl": "https://fosstodon.org/@^USER^",
+        "keyword": {
+            "notMatch": ["The user could not be found"]
+        }
+    },
+    "YouTube": {
+        "mainUrl": "https://youtube.com",
+        "profileUrl": "https://youtube.com/@^USER^",
+        "regexUrl": "https://(?:www.|m.)?youtube.com/@^USER^",
+        "keyword": {
+            "notMatch": ["This page isn't available."]
+        }
+    },
+    "Bugcrowd": {
+        "mainUrl": "https://bugcrowd.com",
+        "profileUrl": "https://bugcrowd.com/^USER^",
+        "keyword": {
+            "notMatch": ["The requested page was not found"],
+            "Match": ["Overview", "Achievements", "All-time points"]
+        },
+        "isConnected": true
+    },
+    "HackerOne": {
+        "mainUrl": "https://hackerone.com",
+        "profileUrl": "https://hackerone.com/^USER^",
+        "queryUrl": "https://hackerone.com/graphql",
+        "keyword": {
+            "notMatch": ["User does not exist"]
+        },
+        "request_method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "request_payload": {
+            "operationName": "UserProfilePage",
+            "variables": {
+                "resourceIdentifier": "^USER^"
+            },
+            "query": "query UserProfilePage($resourceIdentifier: String!) {\n\n  user(username: $resourceIdentifier) {\n    id\n    username\n    name\n    ...UserProfileCardUser\n  }\n}\n\n\n\nfragment UserProfileCardUser on User {\n  id\n  location\n  website\n  bio\n  bugcrowd_handle\n  hack_the_box_handle\n  github_handle\n  gitlab_handle\n  linkedin_handle\n  twitter_handle\n}\n\n\n\n"
+        },
+        "isConnected": true,
+        "handle_regex": {
+            "Bugcrowd": "bugcrowd_handle\":\"([^\"]+)",
+            "GitHub": "github_handle\":\"([^\"]+)",
+            "GitLab": "gitlab_handle\":\"([^\"]+)",
+            "LinkedIn": "linkedin_handle\":\"([^\"]+)",
+            "X(Twitter)": "twitter_handle\":\"([^\"]+)",
+            "Hack The Box": "hack_the_box_handle\":\"([^\"]+)"
+        }
+    },
+    "Hack The Box": {
+        "mainUrl": "https://app.hackthebox.com",
+        "profileUrl": "https://app.hackthebox.com/profile/^USER^",
+        "queryUrl": "https://labs.hackthebox.com/api/v4/profile/^USER^",
+        "regexUrl": "https://app.hackthebox.(?:eu|com)/(?:profile|users)/^USER^",
+        "keyword": {
+            "notMatch": ["User not found"]
+        },
+        "handle_regex": {
+            "GitHub": "github\":\"https:\\\\/\\\\/github.com\\\\/([^\"]+)",
+            "LinkedIn": "linkedin\":\"https:\\\\/\\\\/linkedin.com\\\\/in\\\\/([^\"]+)",
+            "X(Twitter)": "twitter\":\"https:\\\\/\\\\/twitter.com\\\\/([^\"]+)"
+        },
+        "isConnected": true,
+        "isUserId": true
+    },
+    "PentesterLab": {
+        "mainUrl": "https://pentesterlab.com",
+        "profileUrl": "https://pentesterlab.com/profile/^USER^",
+        "isUserId": true
+    },
+    "Spotify": {
+        "mainUrl": "https://open.spotify.com",
+        "profileUrl": "https://open.spotify.com/user/^USER^",
+        "regexUrl": "https://open.spotify.com/(?:intl-[a-z]{2}/)?(?:artist|user)/^USER^",
+        "isUserId": true
+    },
+    "SoundCloud": {
+        "mainUrl": "https://soundcloud.com",
+        "profileUrl": "https://soundcloud.com/^USER^",
+        "keyword": {
+            "notMatch": ["We can’t find that user."]
+        }
+    },
+    "Keybase": {
+        "mainUrl": "https://keybase.io",
+        "profileUrl": "https://keybase.io/^USER^",
+        "keyword": {
+            "notMatch": ["No such user"]
+        }
+    },
+    "Duolingo": {
+        "mainUrl": "https://duolingo.com",
+        "profileUrl": "https://duolingo.com/profile/^USER^",
+        "queryUrl": "https://www.duolingo.com/2017-06-30/users?username=^USER^",
+        "keyword": {
+            "notMatch": ["{\"users\":[]}"]
+        }
+    },
+    "Apple Music": {
+        "mainUrl": "https://music.apple.com",
+        "profileUrl": "https://music.apple.com/profile/^USER^",
+        "regexUrl": "https://music.apple.com/(?:[a-z]{2}/)?(?:artist|profile)/^USER^"
+    },
+    "Apple Developer": {
+        "mainUrl": "https://developer.apple.com",
+        "profileUrl": "https://developer.apple.com/forums/profile/^USER^",
+        "keyword": {
+            "notMatch": ["The page you’re looking for can’t be found"]
+        }
+    },
+    "Apple Discussions": {
+        "mainUrl": "https://discussions.apple.com",
+        "profileUrl": "https://discussions.apple.com/profile/^USER^",
+        "keyword": {
+            "notMatch": ["The page you tried was not found. You may have used an outdated link or may have typed the address (URL) incorrectly."]
+        }
+    },
+    "Telegram": {
+        "mainUrl": "https://t.me",
+        "profileUrl": "https://t.me/^USER^",
+        "keyword": {
+            "Match": ["View in Telegram"]
+        }
+    },
+    "HackerNews": {
+        "mainUrl": "https://news.ycombinator.com",
+        "profileUrl": "https://news.ycombinator.com/user?id=^USER^",
+        "keyword": {
+            "notMatch": ["No such user."]
+        }
+    },
+    "Paypal": {
+        "mainUrl": "https://www.paypal.me",
+        "profileUrl": "https://www.paypal.com/paypalme/^USER^",
+        "keyword": {
+            "notMatch": [
+                "We can’t find this profile", "Make sure the link’s right and profile hasn’t been turned off."],
+            "Match": ["Send", "Report this link"]
+        }
+    },
+    "Discord": {
+        "mainUrl": "https://discord.com",
+        "profileUrl": "https://discord.com/users/^USER^",
+        "keyword": {
+            "notMatch": ["404: This page could not be found"]
+        },
+        "isUserId": true
+    },
+    "Pinterest": {
+        "mainUrl": "https://www.pinterest.com",
+        "profileUrl": "https://www.pinterest.com/^USER^",
+        "regexUrl": "https://(?:id.|www.)?pinterest.com/^USER^",
+        "keyword": {
+            "Match": [" - Profile | Pinterest"]
+        }
+    },
+    "Behance": {
+        "mainUrl": "https://www.behance.net",
+        "profileUrl": "https://www.behance.net/^USER^",
+        "keyword": {
+            "notMatch": ["Oops! We can't find that page"]
+        }
+    },
+    "Dribbble": {
+        "mainUrl": "https://dribbble.com",
+        "profileUrl": "https://dribbble.com/^USER^",
+        "keyword": {
+            "notMatch": ["Whoops, that page is gone."]
+        }
+    },
+    "Vimeo": {
+        "mainUrl": "https://vimeo.com",
+        "profileUrl": "https://vimeo.com/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, we couldn’t find that page"]
+        }
+    },
+    "Patreon": {
+        "mainUrl": "https://www.patreon.com",
+        "profileUrl": "https://www.patreon.com/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, this page isn't available"]
+        }
+    },
+    "Steam": {
+        "mainUrl": "https://steamcommunity.com",
+        "profileUrl": "https://steamcommunity.com/profiles/^USER^",
+        "keyword": {
+            "notMatch": ["The specified profile could not be found"]
+        },
+        "isUserId": true
+    },
+    "Tumblr": {
+        "mainUrl": "https://www.tumblr.com",
+        "profileUrl": "https://^USER^.tumblr.com",
+        "keyword": {
+            "notMatch": ["There's nothing here."]
+        }
+    },
+    "Fiverr": {
+        "mainUrl": "https://www.fiverr.com",
+        "profileUrl": "https://www.fiverr.com/^USER^",
+        "keyword": {
+            "notMatch": ["Oops! That page doesn’t exist or is unavailable."],
+            "Match": ["Contact Me", "About me"]
+        }
+    },
+    "Upwork": {
+        "mainUrl": "https://www.upwork.com",
+        "profileUrl": "https://www.upwork.com/freelancers/^USER^",
+        "keyword": {
+            "notMatch": ["Sorry, the page you’re looking for is unavailable"]
+        }
+    },
+    "Bitbucket": {
+        "mainUrl": "https://bitbucket.org",
+        "profileUrl": "https://bitbucket.org/^USER^",
+        "keyword": {
+            "notMatch": ["Repository not found"]
+        }
+    },
+    "Slack": {
+        "mainUrl": "https://slack.com",
+        "profileUrl": "https://^USER^.slack.com",
+        "keyword": {
+            "notMatch": ["This workspace doesn’t exist"]
+        }
+    },
+    "Stack Overflow": {
+        "mainUrl": "https://stackoverflow.com",
+        "profileUrl": "https://stackoverflow.com/users/^USER^",
+        "keyword": {
+            "notMatch": ["Page Not Found"]
+        },
+        "isUserId": true
+    },
+    "Quora": {
+        "mainUrl": "https://www.quora.com",
+        "profileUrl": "https://www.quora.com/profile/^USER^",
+        "keyword": {
+            "notMatch": ["Oops! The page you're looking for doesn't exist."]
+        }
+    },
+    "Goodreads": {
+        "mainUrl": "https://www.goodreads.com",
+        "profileUrl": "https://www.goodreads.com/user/show/^USER^",
+        "keyword": {
+            "notMatch": ["Page not found"]
+        }
+    },
+    "Crunchbase": {
+        "mainUrl": "https://www.crunchbase.com",
+        "profileUrl": "https://www.crunchbase.com/person/^USER^",
+        "keyword": {
+            "notMatch": ["Page Not Found"]
+        }
+    },
+    "AngelList": {
+        "mainUrl": "https://angel.co",
+        "profileUrl": "https://angel.co/u/^USER^",
+        "keyword": {
+            "notMatch": ["404 - Page Not Found"]
+        }
+    },
+    "Product Hunt": {
+        "mainUrl": "https://www.producthunt.com",
+        "profileUrl": "https://www.producthunt.com/@^USER^",
+        "keyword": {
+            "notMatch": ["This page doesn't exist"]
+        }
+    },
+    "SlideShare": {
+        "mainUrl": "https://www.slideshare.net",
+        "profileUrl": "https://www.slideshare.net/^USER^",
+        "keyword": {
+            "notMatch": ["This username"]
+        }
+    },
+    "Wattpad": {
+        "mainUrl": "https://www.wattpad.com",
+        "profileUrl": "https://www.wattpad.com/user/^USER^",
+        "keyword": {
+            "notMatch": ["Oops! That page can’t be found."]
+        }
+    },
+    "Kaggle": {
+        "mainUrl": "https://www.kaggle.com",
+        "profileUrl": "https://www.kaggle.com/^USER^",
+        "keyword": {
+            "notMatch": ["We can't find that page."]
+        }
+    },
+    "Codecademy": {
+        "mainUrl": "https://www.codecademy.com",
+        "profileUrl": "https://www.codecademy.com/profiles/^USER^",
+        "keyword": {
+            "notMatch": ["This profile could not be found"]
+        }
+    },
+    "CodePen": {
+        "mainUrl": "https://codepen.io",
+        "profileUrl": "https://codepen.io/^USER^",
+        "keyword": {
+            "notMatch": ["404"]
+        }
+    },
+    "DeviantArt": {
+        "mainUrl": "https://www.deviantart.com",
+        "profileUrl": "https://www.deviantart.com/^USER^",
+        "keyword": {
+            "notMatch": ["Browse Art"]
+        }
+    },
+    "Codeforces": {
+        "mainUrl": "https://codeforces.com",
+        "profileUrl": "https://codeforces.com/profile/^USER^",
+        "queryUrl": "https://codeforces.com/api/user.info?handles=^USER^",
+        "keyword": {
+            "Match": ["result"]
+        }
+    },
+    "LeetCode": {
+        "mainUrl": "https://leetcode.com",
+        "profileUrl": "https://leetcode.com/u/^USER^",
+        "keyword": {
+            "notMatch": ["Page Not Found"]
+        }
+    },
+    "Freelancer": {
+        "mainUrl": "https://www.freelancer.com/",
+        "profileUrl": "https://www.freelancer.com/u/^USER^",
+        "keyword": {
+            "notMatch": ["Looks like the page you are looking for doesn't exist."],
+            "Match": ["Hire Me"]
+        }
+    },
+    "Gravatar": {
+        "mainUrl": "https://gravatar.com",
+        "profileUrl": "https://gravatar.com/^USER^",
+        "keyword": {
+            "notMatch": ["Uh oh. Page not found"]
+        },
+        "isConnected": true
+    },
+    "Xing": {
+        "mainUrl": "https://www.xing.com",
+        "profileUrl": "https://www.xing.com/profile/^USER^",
+        "keyword": {
+            "notMatch": ["This page appears to have gone with the wind."]
+        }
+    },
+    "Dev.to": {
+        "mainUrl": "https://dev.to",
+        "profileUrl": "https://dev.to/^USER^",
+        "keyword": {
+            "notMatch": ["This page does not exist"]
+        },
+        "isConnected": true
+    },
+    "Kaskus": {
+        "mainUrl": "https://www.kaskus.co.id",
+        "profileUrl": "https://www.kaskus.co.id/profile/@^USER^",
+        "keyword": {
+            "notMatch": ["We can't find the page you are looking for"]
+        }
+    }
+}

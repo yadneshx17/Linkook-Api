@@ -29,81 +29,17 @@ def get_api_key(api_key: str = Security(api_key_header)):
         raise HTTPException(status_code=403, detail="Invalid API Key")
     return api_key
 
-# @app.get("/linkook/{username}")
-# def lookup(username: str, show_summary: bool = False, api_key: str = Depends(get_api_key)):
-#     """
-#     Executes the Linkook tool using:
-#         linkook {username}
-#     Optionally appends the --show-summary flag.
-#     """
-#     try:
-#         # Construct the command
-#         command = ["linkook", username]
-#         if show_summary:
-#             command.append("--show-summary")
-        
-#         # Run the command and capture output
-#         result = subprocess.run(command, capture_output=True, text=True)
-        
-#         if result.returncode != 0:
-#             raise HTTPException(status_code=500, detail=f"Error: {result.stderr.strip()}")
-        
-#         # Parse JSON output (assuming Linkook outputs JSON)
-#         output = json.loads(result.stdout.strip())
-#         return output
-#     except json.JSONDecodeError:
-#         raise HTTPException(status_code=500, detail="Failed to parse JSON output from Linkook.")
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
-
-# @app.get("/linkook/{username}")
-# def lookup(username: str, show_summary: bool = False, api_key: str = Depends(get_api_key)):
-#     """
-#     Executes the Linkook tool using:
-#         linkook {username}
-#     Optionally appends the --show-summary flag.
-#     """
-#     try:
-#         # Construct the command
-#         command = ["linkook", username]
-#         if show_summary:
-#             command.append("--show-summary")
-
-#         # Run the command and capture output
-#         result = subprocess.run(command, capture_output=True, text=True)
-
-#         if result.returncode != 0:
-#             raise HTTPException(status_code=500, detail=f"Error: {result.stderr.strip()}")
-
-#         # Try to parse JSON output
-#         try:
-#             output = json.loads(result.stdout.strip())
-#             return output
-#         except json.JSONDecodeError:
-#             return {
-#                 "raw_output": result.stdout.strip(),
-#                 "error": "Output from Linkook is not valid JSON. Here's the raw output."
-#             }
-
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
-
 @app.get("/linkook/{username}")
 def lookup(username: str, show_summary: bool = False, api_key: str = Depends(get_api_key)):
     """
-    Executes the Linkook tool using:
-        linkook {username}
-    Optionally appends the --show-summary flag.
     The function attempts to parse the output as JSON.
     If parsing fails, it wraps the raw output in a JSON response.
     """
     try:
-        # Construct the command without a JSON flag
         command = ["linkook", username]
         if show_summary:
             command.append("--show-summary")
         
-        # Run the command and capture output
         result = subprocess.run(command, capture_output=True, text=True)
         
         if result.returncode != 0:
